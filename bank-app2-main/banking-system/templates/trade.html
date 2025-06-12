@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Stocks</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            background-color: #007BFF;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+        }
+
+        header {
+            background-color: #035bba;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .account-balance {
+            margin: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-align: left;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .box {
+            position: absolute;
+            top: 50%;
+            left: 1.2%;
+            transform: translateY(-50%);
+            width: 200px;
+            height: 300px; /* Increased height */
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: left;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 0; /* Set bottom padding to 0 */
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            margin-left: 35%; /* Align buttons to the left */
+            margin-right: 65%;
+            margin-bottom: 20px; /* Keep it close to the chart */
+            padding-bottom: 50px; /* Add padding from the bottom of the page */
+        }
+
+        .btn {
+            padding: 10px 60px; /* Further increased width by adjusting padding */
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+         
+        }
+
+        .btn-buy {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-sell {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-sell-all {
+            background-color: #FF9800;
+            color: white;
+            white-space: nowrap; /* Ensure text stays on one line */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('customer_dashboard') }}">Home</a>
+        <a href="{{ url_for('transfer') }}">Transfer</a>
+        <a href="{{ url_for('trade') }}">Trade</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+    <header>
+        <h1>Trade Stocks</h1>
+    </header>
+    <div class="account-balance">
+        <h2>Account Balance: ${{ user['balance'] }}</h2>
+    </div>
+    <div class="container">
+        <div class="box">
+            <p><strong>Information Box</strong></p>
+            <p>Details about trading or other relevant information can go here.</p>
+            <p><strong>Stocks Owned:</strong></p>
+            <ul>
+                {% for stock in portfolio %}
+                <li>
+                    <strong>{{ stock['stock'] }}</strong>: {{ stock['total_amount'] }} shares
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+        </div>
+    </div>
+        <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+        </div>
+    </div>
+    <div class="btn-container">
+        <form method="POST" action="{{ url_for('trade') }}">
+            <input type="hidden" name="action" value="buy">
+            <input type="hidden" name="stock" value="TSLA">
+            <input type="hidden" name="amount" value="1">
+            <button type="submit" class="btn btn-buy">Buy</button>
+        </form>
+        <form method="POST" action="{{ url_for('trade') }}">
+            <input type="hidden" name="action" value="sell">
+            <input type="hidden" name="stock" value="TSLA">
+            <input type="hidden" name="amount" value="1">
+            <button type="submit" class="btn btn-sell">Sell</button>
+        </form>
+        <form method="POST" action="{{ url_for('trade') }}">
+            <input type="hidden" name="action" value="sell_all">
+            <input type="hidden" name="stock" value="TSLA">
+            <button type="submit" class="btn btn-sell-all">Sell All</button>
+        </form>
+    </div>
+    <script>
+        const ctx = document.getElementById('lineChart').getContext('2d');
+        const initialData = Array.from({ length: 10 }, () => Math.random() < 0.65 ? 50.6 : (Math.random() + 50)); // 65% chance of 50.6
+        const lineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({ length: 10 }, (_, i) => `${(10 - i) * 2}s`),
+                datasets: [{
+                    label: 'Stock Price',
+                    data: initialData,
+                    borderColor: '#007BFF',
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    borderWidth: 2,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time Points',
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Value',
+                        },
+                        min: 50,
+                        max: 51,
+                        ticks: {
+                            stepSize: 0.2,
+                        }
+                    }
+                }
+            }
+        });
+
+        setInterval(() => {
+            const currentData = lineChart.data.datasets[0].data;
+            const newValue = Math.random() < 0.65 ? 50.6 : (Math.random() + 50); // 65% chance of 50.6
+            currentData.shift();
+            currentData.push(newValue);
+            lineChart.update();
+        }, 2000);
+    </script>
+</body>
+</html>

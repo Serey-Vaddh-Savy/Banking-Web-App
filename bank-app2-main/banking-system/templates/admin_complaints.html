@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Admin Complaints</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Page Header -->
+        <header class="text-center mb-4">
+            <h1 class="text-primary">Customer Complaints</h1>
+            <p class="lead">Manage and resolve customer complaints efficiently.</p>
+        </header>
+
+        <!-- Complaints Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>User ID</th>
+                        <th>Complaint</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in complaints %}
+                    <tr>
+                        <td class="text-center">{{ complaint.id }}</td>
+                        <td>{{ complaint.user_id }}</td>
+                        <td>{{ complaint.complaint }}</td>
+                        <td>{{ complaint.status }}</td>
+                        <td class="text-center">
+                            {% if complaint.status == 'Pending' %}
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            {% elif complaint.status == 'Resolved' %}
+                                <span class="badge bg-success">Resolved</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Unknown</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <form method="POST" action="{{ url_for('resolve_complaint', complaint_id=complaint.id) }}">
+                                <button type="submit">Resolve</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Back to Dashboard Button -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-primary btn-lg">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

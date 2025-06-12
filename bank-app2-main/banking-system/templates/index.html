@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Banking System</title>
+</head>
+<body>
+    <header>
+        {% extends 'base.html' %}
+
+{% block title %}Welcome to BankApp{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <div class="hero-section">
+        <h1>Welcome to <span class="brand-name">BankApp</span></h1>
+        <p class="tagline">Your trusted partner for secure and efficient financial management.</p>
+    </div>
+
+    <div class="features-section">
+        <h2>Our Services</h2>
+        <p>Explore the wide range of features we offer to make your banking experience seamless:</p>
+        <ul class="features-list">
+            <li><a href="{{ url_for('register') }}">Register</a> - Create a new account and join us today.</li>
+            <li><a href="{{ url_for('login') }}">Login</a> - Access your account securely.</li>
+            <li><a href="{{ url_for('balance') }}">Check Balance</a> - View your current account balance.</li>
+            <li><a href="{{ url_for('transfer') }}">Transfer Money</a> - Send money to other accounts seamlessly.</li>
+            <li><a href="{{ url_for('trade') }}">Stock Trading</a> - Trade stocks with live price updates.</li>
+            <li><a href="{{ url_for('complaint') }}">Submit Complaint</a> - Report issues or provide feedback.</li>
+        </ul>
+    </div>
+
+    <div class="cta-section">
+        <p>Ready to take control of your finances? <a href="{{ url_for('register') }}" class="cta-button">Get Started</a></p>
+    </div>
+</div>
+{% endblock %}
+    </header>
+    <main>
+        <h2>Explore Our Services</h2>
+        <p>Your trusted partner in banking.</p>
+    </main>
+    <footer>
+        <p>&copy; 2023 Banking System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

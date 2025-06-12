@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Admin - View Feedback</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Feedback</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Feedback</th>
+                    <th>Date Submitted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for feedback in feedbacks %}
+                <tr>
+                    <td>{{ feedback.username }}</td>
+                    <td>{{ feedback.feedback }}</td>
+                    <td>{{ feedback.date_submitted }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>

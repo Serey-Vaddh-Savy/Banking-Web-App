@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For Pie Chart -->
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block title %}Investor Dashboard{% endblock %}
+
+    {% block content %}
+    <header>
+        <h1>Investor Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Section 1: Portfolio -->
+        <section>
+            <h2>Your Portfolio</h2>
+            <canvas id="portfolioChart" width="400" height="400"></canvas>
+        </section>
+
+        <!-- Section 2: Stock Prices -->
+        <section>
+            <h2>Stock Prices</h2>
+            <p><strong>TSLA:</strong> $<span id="tslaPrice">50</span></p>
+            <p><strong>GGOL:</strong> $<span id="ggolPrice">53</span></p>
+        </section>
+
+        <!-- Section 3: Purchase Stocks -->
+        <section>
+            <h2>Purchase Stocks</h2>
+            <form action="{{ url_for('trade') }}" method="POST">
+                <div class="form-group">
+                    <label for="stock">Select Stock:</label>
+                    <select id="stock" name="stock" class="form-control" required>
+                        <option value="TSLA">TSLA</option>
+                        <option value="GGOL">GGOL</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount to Invest:</label>
+                    <input type="number" id="amount" name="amount" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Purchase</button>
+            </form>
+        </section>
+    </main>
+    {% endblock %}
+
+    <script>
+        // Portfolio Pie Chart
+        const ctx = document.getElementById('portfolioChart').getContext('2d');
+        const portfolioChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['TSLA', 'GGOL'],
+                datasets: [{
+                    label: 'Portfolio',
+                    data: [50, 50], // Placeholder values, replace with actual data
+                    backgroundColor: ['#FF6384', '#36A2EB'],
+                }]
+            }
+        });
+
+        // Stock Prices Simulation
+        let tslaPrice = 50;
+        let ggolPrice = 53;
+
+        function updatePrices() {
+            // TSLA: Increase 10% for 2 minutes, then drop 5% for 2 minutes
+            tslaPrice *= Math.random() > 0.5 ? 1.1 : 0.95;
+            document.getElementById('tslaPrice').innerText = tslaPrice.toFixed(2);
+
+            // GGOL: Increase 7% for 2 minutes, then drop 4% for 2 minutes
+            ggolPrice *= Math.random() > 0.5 ? 1.07 : 0.96;
+            document.getElementById('ggolPrice').innerText = ggolPrice.toFixed(2);
+        }
+
+        // Update prices every 2 minutes (120,000 ms)
+        setInterval(updatePrices, 120000);
+    </script>
+</body>
+</html>

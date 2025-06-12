@@ -1,0 +1,344 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Light background for contrast */
+    color: #333333; /* Dark gray for primary text */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+    background-image: url('https://cdn.britannica.com/45/256645-159-7071E52E/Bank-building.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333; /* Default text color */
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+main {
+    flex: 1; /* Pushes the footer to the bottom if content is short */
+}
+/* Header */
+header {
+    background: #106EBE; /* Blue */
+    color: #ffffff; /* White text for the header */
+    padding: 10px 0;
+    text-align: center;
+}
+/* Welcome Page Styles */
+.welcome-container {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border-radius: 10px;
+    margin: 50px auto;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    color: #106EBE;
+    margin-bottom: 10px;
+}
+
+.hero-section .brand-name {
+    color: #0FFCBE;
+    font-weight: bold;
+}
+
+.hero-section .tagline {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.features-section h2 {
+    font-size: 2rem;
+    color: #106EBE;
+    margin-bottom: 10px;
+}
+
+.features-section p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.features-list {
+    text-align: left;
+    margin: 0 auto;
+    max-width: 600px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.features-list li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.features-list li a {
+    color: #106EBE;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.features-list li a:hover {
+    text-decoration: underline;
+}
+
+.cta-section {
+    margin-top: 30px;
+}
+
+.cta-section .cta-button {
+    display: inline-block;
+    background-color: #106EBE;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cta-section .cta-button:hover {
+    background-color: #0FFCBE;
+    transform: scale(1.05);
+}
+/* Navigation Bar */
+nav {
+    background: rgba(16, 110, 190, 0.9); /* Semi-transparent blue background */
+    padding: 15px 20px; /* Add padding for spacing */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out items */
+    align-items: center; /* Center items vertically */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav .logo {
+    font-size: 24px; /* Larger font size for the logo */
+    font-weight: bold;
+    color: #ffffff; /* White text for the logo */
+    text-decoration: none; /* Remove underline */
+}
+
+nav .menu {
+    display: flex; /* Use flexbox for menu items */
+    gap: 20px; /* Add spacing between menu items */
+}
+
+nav .menu a {
+    color: #ffffff; /* White text for links */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Adjust font size */
+    font-weight: 500; /* Medium font weight */
+    padding: 8px 12px; /* Add padding for clickable area */
+    border-radius: 5px; /* Add rounded corners */
+    transition: background 0.3s, color 0.3s; /* Smooth hover effect */
+}
+
+nav .menu a:hover {
+    background: #0FFCBE; /* Mint background on hover */
+    color: #106EBE; /* Blue text on hover */
+}
+/* Center the form on the page */
+main.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Add a subtle shadow to the form */
+form {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the header */
+header h1 {
+    font-size: 2rem;
+    color: #333;
+}
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333333; /* Dark gray for primary text */
+}
+
+/* Secondary Text */
+.secondary-text {
+    color: #666666; /* Light gray for secondary text */
+}
+/* Form Container */
+.form-container {
+    width: 360px; /* Similar width to Google's form */
+    margin: 50px auto; /* Center the form horizontally and add vertical spacing */
+    padding: 20px 30px; /* Add padding for inner spacing */
+    background: #ffffff; /* White background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.form-container:hover {
+    transform: scale(1.02); /* Slightly enlarge the form on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhance the shadow on hover */
+}
+
+/* Form Header */
+.form-header {
+    font-size: 24px; /* Larger font size for the header */
+    font-weight: bold;
+    color: #333333; /* Dark gray for the header */
+    margin-bottom: 20px; /* Add spacing below the header */
+}
+
+/* Form Elements */
+form label {
+    font-weight: bold;
+    color: #333333; /* Dark gray for labels */
+    margin-bottom: 8px;
+    display: block;
+    text-align: left; /* Align labels to the left */
+    width: 100%; /* Full width for labels */
+}
+
+form input {
+    width: 100%;
+    padding: 10px; /* Add padding for inputs */
+    margin: 10px 0; /* Add spacing between inputs */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 14px;
+    box-sizing: border-box; /* Ensure consistent sizing */
+}
+
+form button {
+    width: 100%;
+    padding: 10px; /* Add padding for the button */
+    background: #106EBE; /* Blue */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 4px; /* Slightly rounded corners */
+    cursor: pointer;
+    font-size: 16px; /* Larger font size for the button */
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+form button:hover {
+    background: #0FFCBE; /* Mint on hover */
+    color: #106EBE; /* Blue text on hover */
+    transform: scale(1.02); /* Slightly enlarge the button on hover */
+}
+
+/* Links */
+.form-links {
+    margin-top: 15px; /* Add spacing above the links */
+    font-size: 14px; /* Smaller font size for links */
+    color: #106EBE; /* Blue for links */
+}
+
+.form-links a {
+    color: #106EBE; /* Blue for links */
+    text-decoration: none; /* Remove underline */
+}
+
+.form-links a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Buttons */
+button {
+    background: #106EBE; /* Blue */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0FFCBE; /* Mint on hover */
+    color: #106EBE; /* Blue text on hover */
+}
+
+/* Links */
+a {
+    color: #106EBE; /* Blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0FFCBE; /* Mint on hover */
+}
+/* Role Selection */
+/* Role Selection Buttons */
+.role-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.role-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #106EBE; /* Blue background */
+    color: #ffffff; /* White text */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.role-button:hover {
+    background: #0FFCBE; /* Mint background on hover */
+    color: #106EBE; /* Blue text on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Footer (Optional) */
+footer {
+    background: rgba(16, 110, 190, 0.9); /* Semi-transparent blue background */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}

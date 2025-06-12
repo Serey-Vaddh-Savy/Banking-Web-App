@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Role</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block title %}Select Role for Registration{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-header">Select Your Role For Registration</div>
+    <div class="role-selection">
+        
+        <a href="{{ url_for('register_customer') }}" class="role-button">Customer</a>
+        <a href="{{ url_for('register_admin') }}" class="role-button">Admin</a>
+    </div>
+</div>
+{% endblock %}
+    
+</body>
+</html>

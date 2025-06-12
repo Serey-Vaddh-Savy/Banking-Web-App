@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Banking System</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+{% block title %}Update Personal Information{% endblock %}
+
+{% block content %}
+<header class="text-center my-4">
+    <h1>Update Personal Information</h1>
+</header>
+<main class="container">
+    <form method="POST" class="shadow p-4 rounded bg-light">
+        <!-- Name Field -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Full Name:</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ user['username'] }}" required>
+        </div>
+
+        <!-- Email Field (Read-Only) -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" value="{{ user['email'] }}" readonly>
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="mb-3">
+            <label for="phone_number" class="form-label">Phone Number:</label>
+            <input type="text" id="phone_number" name="phone_number" class="form-control" value="{{ user['phone_number'] }}" required>
+        </div>
+
+        <!-- Address Field -->
+        <div class="mb-3">
+            <label for="address" class="form-label">Address:</label>
+            <textarea id="address" name="address" class="form-control" rows="4" required>{{ user['address'] }}</textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+    </form>
+
+    <!-- Change Password Section -->
+    <section class="mt-5">
+        <h2 class="text-center">Change Password</h2>
+        <form method="POST" action="{{ url_for('change_password') }}" class="shadow p-4 rounded bg-light">
+            <!-- Current Password -->
+            <div class="mb-3">
+                <label for="current_password" class="form-label">Current Password:</label>
+                <input type="password" id="current_password" name="current_password" class="form-control" required>
+            </div>
+
+            <!-- New Password -->
+            <div class="mb-3">
+                <label for="new_password" class="form-label">New Password:</label>
+                <input type="password" id="new_password" name="new_password" class="form-control" required>
+            </div>
+
+            <!-- Confirm New Password -->
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm New Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-warning w-100">Change Password</button>
+        </form>
+    </section>
+</main>
+{% endblock %}
+</body>
+</html>

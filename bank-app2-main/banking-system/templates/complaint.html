@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Submit a Complaint</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Submit a Complaint</h1>
+        <form action="{{ url_for('complaint') }}" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="complaint">Complaint:</label>
+                <textarea id="complaint" name="complaint" rows="4" required></textarea>
+            </div>
+            <button type="submit">Submit Complaint</button>
+        </form>
+        <a href="{{ url_for('customer_dashboard') }}">Back to Home</a>
+    </div>
+</body>
+</html>
